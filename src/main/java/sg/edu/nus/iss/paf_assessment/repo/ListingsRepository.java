@@ -1,7 +1,8 @@
 package sg.edu.nus.iss.paf_assessment.repo;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,11 @@ public class ListingsRepository {
     //     price : {$gte: 0, $lte: 1000  }
     //         }, 
     //      {_id : 0, name: 1, price: 1, "images.picture_url":1 }).sort({price: -1});
-    public List<Document> searchListings(MultiValueMap<String, String> searchParams) {
+    public List<Document> searchListings(HashMap<String, String> searchParams) {
 
-        Criteria criteria1 = new Criteria().andOperator(Criteria.where("address.country").regex(searchParams.getFirst("country"), "i"),
-                                            Criteria.where("accomodates").is(searchParams.getFirst("pax")),
-                                            Criteria.where("price").gte(searchParams.getFirst("min"))
+        Criteria criteria1 = new Criteria().andOperator(Criteria.where("address.country").regex(searchParams.get("country"), "i"),
+                                            Criteria.where("accomodates").is(searchParams.get("pax")),
+                                            Criteria.where("price").gte(searchParams.get("min"))
                                             .andOperator(Criteria.where("price").lte("max")));
 
 
@@ -45,5 +46,18 @@ public class ListingsRepository {
         List<Document> results = template.find(query, Document.class, "listings");
 
         return results;
+    }
+
+    //Query db.listings.find({_id: "16134812"});
+    public Optional<Document> getListingById(String listingId) {
+        Query query = Query.query(Criteria.where("_id").is(listingId));
+        
+        List<Document> result = template.find(query, Document.class, "listings");
+
+        if (result.isEmpty()) {
+            return Optional.empty();
+        }
+        
+        return Optional.of(result.get(0));
     }
 }

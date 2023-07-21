@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table data-th-object="${resultListings}">
+        <tr></tr>
+        <div data-th-each="doc : ${resultListings}">
+            <td> <span data-th-text="*{name}"> </span></td>
+            <td> <span data-th-text="*{price}"> </span></td>
+            <td> <span data-th-text="*{name}"> </span></td>
+        <form>
+            <input type="hidden" id="accomId" name="accomId" data-th-value="${}"/>
+            <td><button type="submit" data-th-action="" formmethod="get"></button></td>          
+        </form>  
+        </div>
+    </table>
+</body>
+</html>
