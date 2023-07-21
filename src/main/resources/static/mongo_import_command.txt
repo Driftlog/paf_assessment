@@ -1,0 +1,1 @@
+mongoimport -hlocalhost:27017 -dlisting -clistings --type=json listings.json
