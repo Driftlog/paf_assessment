@@ -6,17 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <table data-th-object="${resultListings}">
-        <tr></tr>
-        <div data-th-each="doc : ${resultListings}">
-            <td> <span data-th-text="*{name}"> </span></td>
-            <td> <span data-th-text="*{price}"> </span></td>
-            <td> <span data-th-text="*{name}"> </span></td>
-        <form>
-            <input type="hidden" id="accomId" name="accomId" data-th-value="${}"/>
-            <td><button type="submit" data-th-action="" formmethod="get"></button></td>          
-        </form>  
-        </div>
+    <table>
+            <tr>
+                <td>Address</td>
+                <td>Price</td>
+                <td>Image</td>
+                <td></td>
+            </tr>
+            <tr data-th-each="doc : ${resultListings}">
+            <td> <span data-th-text="${doc.address}"> </span></td>
+            <td> <span data-th-text="${doc.price}"> </span></td>
+            <td> <img data-th-src="${doc.image}"> </td>
+            <td><form data-th-object="${accomsId}" method="post" data-th-action="@{/{id}(id=${doc.id})}">
+                <input type="hidden" data-th-value="${doc.id}">
+                <button type="submit">Details</button>          
+            </form>
+            </td>
+            </tr>   
     </table>
 </body>
 </html>

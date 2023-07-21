@@ -6,9 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <a data-th-href=""></a>
-    <table>
-
+    <a data-th-href="@{/search}"></a>
+    <table data-th-object="${listing}">
+        <tr><td>Id: </td>
+            <td><span data-th-text="${listing._id}"></span></tr></td>
+        <tr>Description: <span data-th-text="*{description}"></span></tr>
+        <tr>Address: <span data-th-text="*{address}"></span></tr>
+        <tr><img data-th-src="${listing.image}"> </tr>
+        <tr>Price: <span data-th-text="*{price}"></span></tr>
+        <tr>Amenities: <span data-th-text="*{amenities}"></span></tr>
     </table>
     <br>
     <form action="#" data-th-object="${user}" data-th-action="">

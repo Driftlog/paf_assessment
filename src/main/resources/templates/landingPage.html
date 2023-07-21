@@ -7,10 +7,13 @@
 </head>
 <body>
     <h1>Search Our Accomodations</h1>
-    <form action="#" data-th-object="${searchParams}" data-th-action="/search" method="GET">
-        <h2> Country <select name="country" id="country" ></h2>
+    <form action="#" data-th-object="${formFields}" data-th-action="@{/search}" method="GET">
+        <h2> Country </h2> 
+        <select data-th-field="*{country}">
+            <option data-th-each="country : ${countries}" data-th-value="${country}" data-th-text="${country}" ></option>
+        </select> 
         <h2> Number of persons: <input type="number" data-th-field="*{pax}"></h2>
-        <h2> Price Range: Min<input type="number" data-th-field="*{min}">  Max<input type ="number" data-th-field="*{max}"></h2>
+        <h2> Price Range: Min <input type="number" data-th-field="*{min}">  Max<input type ="number" data-th-field="*{max}"></h2>
         <input type="submit" value="Search">
     </form>
 </body>
