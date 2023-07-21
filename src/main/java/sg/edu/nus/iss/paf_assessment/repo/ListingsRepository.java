@@ -77,7 +77,13 @@ public class ListingsRepository {
        return countries;
     }
 
-    //Query db.listings.find({_id: "16134812"});
+    //Query db.listings.aggregate([{$match : {"_id": listingId}},
+                                 {
+//           $addFields: {image: "$images.picture_url", id: "$_id"}  
+//         },
+//         {
+//             $project: {id, description, address: 1, price: 1, image:1, amenities:1 }
+//         }])
     public Optional<Document> getListingById(String listingId) {
        
         MatchOperation match = Aggregation.match(Criteria.where("_id").is(listingId));
