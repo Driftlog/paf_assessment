@@ -78,7 +78,7 @@ public class ListingsRepository {
     }
 
     //Query db.listings.aggregate([{$match : {"_id": listingId}},
-                                 {
+                                //  {
 //           $addFields: {image: "$images.picture_url", id: "$_id"}  
 //         },
 //         {
